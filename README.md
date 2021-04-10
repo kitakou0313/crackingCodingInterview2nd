@@ -1,2 +1,2 @@
 # crackingCodingInterview2nd
-cracking coding interviewの二週目
+cracking coding interviewの二周目
