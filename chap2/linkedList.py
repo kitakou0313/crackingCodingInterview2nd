@@ -37,5 +37,19 @@ class LinkedList(object):
             self.tail.next = LinkedListNode(value)
             self.tail = self.tail.next
 
+    def getValues(self):
+        """
+        全ノードのvalを配列にして返却
+        """
+        res = []
+
+        crtNode = self.head
+
+        while crtNode is not None:
+            res.append(crtNode.val)
+            crtNode = crtNode.next
+
+        return res
+
 
 
