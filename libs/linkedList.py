@@ -1,4 +1,4 @@
-
+import collections
 
 class LinkedListNode(object):
     """
@@ -16,16 +16,20 @@ class LinkedList(object):
     """
     連結リスト
     """
-    def __init__(self, values=None):
+    def __init__(self, values:collections.abc.Iterable):
         """
         コンストラクタ、valuesに配列を渡すとそれらを連結リスト化
         """
         self.head = None
         self.tail = None
+        for val in values:
+            self.add(val)
 
-        if values is not None:
-            for val in values:
-                self.add(val)
+    def __iter__(self):
+        current = self.head
+        while current:
+            yield current
+            current = current.next
 
     def add(self, value):
         """
@@ -34,10 +38,25 @@ class LinkedList(object):
         if self.head is None:
             self.head = self.tail = LinkedListNode(value)
         else:
-            self.tail.next = LinkedListNode(value)
+            self.tail.next = LinkedListNode(value, nextNode=None, prevNode=self.tail)
             self.tail = self.tail.next
 
-    def getValues(self):
+    def removeNode(self, node:LinkedListNode):
+        """
+        nodeをリストから削除
+        """
+        if node.prev is not None:
+            node.prev.next = node.next
+        else:
+            self.head = node.next
+        
+        if node.next is not None:
+            node.next.prev = node.prev
+        else:
+            self.tail = node.prev
+
+
+    def getValues(self) -> []:
         """
         全ノードのvalを配列にして返却
         """
@@ -50,6 +69,5 @@ class LinkedList(object):
             crtNode = crtNode.next
 
         return res
-
 
 
