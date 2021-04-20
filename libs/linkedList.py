@@ -12,9 +12,44 @@ class LinkedListNode(object):
         self.next = nextNode
         self.val = val
 
+class SingleLinkedList(object):
+    """
+    単方向連結リスト
+    """
+    def __init__(self, values:collections.abc.Iterable):
+        """
+        コンストラクタ、valueで配列を渡すとそれを連結リスト化
+        """
+        self.head = None
+        self.tail = None
+
+        for val in values:
+            self.add(val)
+    
+    def add(self, value:any):
+        """
+        末尾にノードを追加
+        """
+        if self.head is None:
+            self.head = self.tail = LinkedListNode(value)
+        else:
+            self.tail.next = LinkedListNode(value)
+            self.tail = self.tail.next
+
+    def getValues(self) -> []:
+        """
+        全要素を配列化して返却
+        """
+        crtNode = self.head
+        res = []
+        while crtNode is not None:
+            res.append(crtNode.val)
+            crtNode = crtNode.next
+        return res
+
 class LinkedList(object):
     """
-    連結リスト
+    双方向連結リスト
     """
     def __init__(self, values:collections.abc.Iterable):
         """
