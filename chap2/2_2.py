@@ -1,11 +1,20 @@
 from libs.linkedList import SingleLinkedList
 import unittest
 
-def getKthNodeValue(lList:SingleLinkedList, k:int):
+def getKthNodeValue(lList:SingleLinkedList, k:int)->int:
     """
     lListの後ろからk番目の要素を返す
     """
-    return True
+    runner = current = lList.head
+
+    for _ in range(k):
+        runner = runner.next
+
+    while runner is not None:
+        runner = runner.next
+        current = current.next
+    
+    return current.val
 
 class Test(unittest.TestCase):
     testCases = (
@@ -20,7 +29,7 @@ class Test(unittest.TestCase):
             lList = SingleLinkedList(list(listVals))
 
             self.assertEqual(lList.getValues(), listVals)
-            #self.assertEqual(lList.getValues(), expected)
+            self.assertEqual(getKthNodeValue(lList, k), expected)
 
 
 if __name__ == "__main__":
