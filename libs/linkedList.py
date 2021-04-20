@@ -4,7 +4,7 @@ class LinkedListNode(object):
     """
     連結リストのノード
     """
-    def __init__(self, val, nextNode=None, prevNode=None):
+    def __init__(self, val:int, nextNode=None, prevNode=None):
         """
         コンストラクタ
         """
