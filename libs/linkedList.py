@@ -47,6 +47,13 @@ class SingleLinkedList(object):
             crtNode = crtNode.next
         return res
 
+    def addMultiNode(self, values:[]):
+        """
+        valueに対応するNodeを追加
+        """
+        for value in values:
+            self.add(value)
+
 class LinkedList(object):
     """
     双方向連結リスト
