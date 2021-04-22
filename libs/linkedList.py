@@ -20,11 +20,17 @@ class SingleLinkedList(object):
         """
         コンストラクタ、valueで配列を渡すとそれを連結リスト化
         """
-        self.head = None
-        self.tail = None
+        self.head:LinkedListNode = None
+        self.tail:LinkedListNode = None
 
         for val in values:
             self.add(val)
+
+    def __iter__(self) -> LinkedListNode:
+        current = self.head
+        while current:
+            yield current
+            current = current.next
     
     def add(self, value:any):
         """
@@ -54,6 +60,12 @@ class SingleLinkedList(object):
         for value in values:
             self.add(value)
 
+    def setHead(self, node:LinkedListNode) -> None:
+        self.head = node
+
+    def setTail(self, node:LinkedListNode) -> None:
+        self.tail = node
+
 class LinkedList(object):
     """
     双方向連結リスト
@@ -67,7 +79,7 @@ class LinkedList(object):
         for val in values:
             self.add(val)
 
-    def __iter__(self):
+    def __iter__(self) -> LinkedListNode:
         current = self.head
         while current:
             yield current
