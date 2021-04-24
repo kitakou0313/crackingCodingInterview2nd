@@ -27,7 +27,7 @@ class SingleLinkedList(object):
             self.add(val)
 
     def __iter__(self) -> LinkedListNode:
-        current = self.head
+        current:LinkedListNode = self.head
         while current:
             yield current
             current = current.next
@@ -65,6 +65,12 @@ class SingleLinkedList(object):
 
     def setTail(self, node:LinkedListNode) -> None:
         self.tail = node
+
+    def calLength(self) -> int:
+        """
+        ノード数を返す
+        """
+        return len(self.getValues())
 
 class LinkedList(object):
     """
