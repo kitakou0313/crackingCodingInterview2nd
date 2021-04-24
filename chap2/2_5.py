@@ -1,14 +1,24 @@
-from libs.linkedList import SingleLinkedList
+from libs.linkedList import SingleLinkedList, LinkedListNode
 import unittest
 
 def sumTwoLinkedList(list1:SingleLinkedList, list2:SingleLinkedList) -> SingleLinkedList:
     """
     二つのリストを複数桁の数字と見なし、合計した連結リストを返す
     """
+    ansList:SingleLinkedList = SingleLinkedList()
 
-    ansList = SingleLinkedList()
+    currentInList1:LinkedListNode = list1.head
+    currentInList2:LinkedListNode = list2.head
 
+    carry:int = 0
+    while currentInList1 is not None and currentInList2 is not None:
+        res = (currentInList1.val + currentInList2.val + carry)
 
+        ansList.add(res % 10)
+        carry = res // 10
+
+        currentInList1 = currentInList1.next
+        currentInList2 = currentInList2.next
 
     return ansList
     
@@ -18,8 +28,6 @@ class Test(unittest.TestCase):
         ([7, 1, 6], [5, 9, 2], [2, 1, 9]),
         ([0], [0], [0]),
         ([3, 2, 1], [3, 2, 1], [6, 4, 2]),
-        ([123], [123], [246]),
-        ([123], [1], [124]),
     )
     def test1(self, ):
         """
@@ -31,6 +39,10 @@ class Test(unittest.TestCase):
 
             self.assertEqual(list1.getValues(), list1Values)
             self.assertEqual(list2.getValues(), list2Values)
+
+            res = sumTwoLinkedList(list1, list2)
+
+            self.assertEqual(res.getValues(), expected)
 
 
 
