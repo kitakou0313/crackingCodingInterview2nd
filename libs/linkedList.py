@@ -16,15 +16,16 @@ class SingleLinkedList(object):
     """
     単方向連結リスト
     """
-    def __init__(self, values:collections.abc.Iterable):
+    def __init__(self, values:[]=None):
         """
         コンストラクタ、valueで配列を渡すとそれを連結リスト化
         """
         self.head:LinkedListNode = None
         self.tail:LinkedListNode = None
 
-        for val in values:
-            self.add(val)
+        if values is not None:
+            for val in values:
+                self.add(val)
 
     def __iter__(self) -> LinkedListNode:
         current:LinkedListNode = self.head
