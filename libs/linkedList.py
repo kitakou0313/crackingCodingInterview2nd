@@ -27,7 +27,7 @@ class SingleLinkedList(object):
             for val in values:
                 self.add(val)
 
-    def __iter__(self) -> LinkedListNode:
+    def __iter__(self):
         current:LinkedListNode = self.head
         while current:
             yield current
