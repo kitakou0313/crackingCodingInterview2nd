@@ -33,5 +33,11 @@ class IntStack(object):
         長さ返却
         """
         return len(self.data)
+
+    def getTop(self) -> int:
+        """
+        スタックの頂点要素を返す
+        """
+        return self.data[-1]
         
         
