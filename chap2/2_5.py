@@ -7,6 +7,9 @@ def sumTwoLinkedList(list1:SingleLinkedList, list2:SingleLinkedList) -> SingleLi
     """
     ansList:SingleLinkedList = SingleLinkedList()
 
+    list1.add(0)
+    list2.add(0)
+
     currentInList1:LinkedListNode = list1.head
     currentInList2:LinkedListNode = list2.head
 
@@ -20,12 +23,19 @@ def sumTwoLinkedList(list1:SingleLinkedList, list2:SingleLinkedList) -> SingleLi
         currentInList1 = currentInList1.next
         currentInList2 = currentInList2.next
 
+    if ansList.tail.val == 0:
+        for node in ansList:
+            if node.next == ansList.tail:
+                ansList.tail = node
+                node.next = None
+
     return ansList
     
 
 class Test(unittest.TestCase):
     testCases = (
         ([7, 1, 6], [5, 9, 2], [2, 1, 9]),
+        ([3, 2, 6], [3, 2, 5], [6, 4, 1, 1]),
         ([0], [0], [0]),
         ([3, 2, 1], [3, 2, 1], [6, 4, 2]),
     )
