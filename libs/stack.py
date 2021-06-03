@@ -1,4 +1,5 @@
 import copy
+from typing import List
 
 class IntStack(object):
     """
@@ -8,7 +9,7 @@ class IntStack(object):
         """
         コンストラクタ
         """
-        self.data:[int] =[]
+        self.data:List[int] =[]
 
     def pop(self) -> int:
         """
