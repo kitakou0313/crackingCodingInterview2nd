@@ -54,7 +54,7 @@ class AnimalQueue(object):
         """
         self.__animals.append(animal)
 
-    def isEmpty(self):
+    def isEmpty(self) -> bool:
         """
         空か返す
         """
