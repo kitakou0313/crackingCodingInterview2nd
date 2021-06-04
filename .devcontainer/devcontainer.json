@@ -10,7 +10,8 @@
 			"VARIANT": "3",
 			// Options
 			"INSTALL_NODE": "true",
-			"NODE_VERSION": "lts/*"
+			"NODE_VERSION": "lts/*",
+			"TZ": "Asia/Tokyo"
 		}
 	},
 	// Set *default* container specific settings.json values on container create.
