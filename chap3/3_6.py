@@ -73,7 +73,7 @@ class AnimalShelter(object):
         self.__catQueue:AnimalQueue = AnimalQueue()
 
     
-    def enqueue(self, animal:AnimalQueue) -> None:
+    def enqueue(self, animal:Animal) -> None:
         if type(animal) == Dog:
             self.__dogQueue.push(animal)
 
@@ -107,15 +107,39 @@ class AnimalShelter(object):
                 return self.__dogQueue.pop()
             else:
                 return self.__catQueue.pop()
-            
-            
-            
-
 
 
 class Test(unittest.TestCase):
     def test1(self):
-        print('')
+        animals:List[Animal] = [Dog("Taro"), Cat("Tama"), Cat("Mikan"), Dog("Sasuke")]
+        q = AnimalShelter()
+
+        for animal in animals:
+            q.enqueue(animal)
+
+        for expected in animals:
+            actual = q.dequeueAny()
+            self.assertEqual(expected,actual)
+
+    def test2(self):
+        dogs:List[Dog] = [Dog("Taro"), Dog("Sasuke")]
+        cats:List[Cat] = [Cat("Tama"), Cat("Mikan")]
+
+        q = AnimalShelter()
+
+        q.enqueue(dogs[0])
+        q.enqueue(cats[0])
+        q.enqueue(dogs[1])
+        q.enqueue(cats[1])
+
+        for expectedDog in dogs:
+            actualDog:Dog = q.dequeueDog()
+            self.assertEqual(actualDog, expectedDog)
+
+        for expectedCat in cats:
+            actualCat:Cat = q.dequeueCat()
+            self.assertEqual(actualCat, expectedCat)
+
 
 if __name__ == "__main__":
     unittest.main()
