@@ -73,7 +73,7 @@ class AnimalShelter(object):
         self.__catQueue:AnimalQueue = AnimalQueue()
 
     
-    def euqueue(self, animal:AnimalQueue) -> None:
+    def enqueue(self, animal:AnimalQueue) -> None:
         if type(animal) == Dog:
             self.__dogQueue.push(animal)
 
