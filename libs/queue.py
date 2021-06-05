@@ -31,6 +31,35 @@ class IntQueue():
         return len(self.__data) == 0
 
 
+class StrQueue():
+    """
+    int用Queue
+    """
+    def __init__(self):
+        """
+        コンストラクタ
+        """
+        self.__data:List[str] = []
+
+    def pop(self) -> str:
+        """
+        ポップ
+        """
+        return self.__data.pop(0)
+
+    def push(self, value:str) -> None:
+        """
+        追加
+        """
+        self.__data.append(value)
+
+    def isEmpty(self) -> bool:
+        """
+        空か判定
+        """
+        return len(self.__data) == 0
+
+
 class Test(unittest.TestCase):
     def test1(self):
         q = IntQueue()
