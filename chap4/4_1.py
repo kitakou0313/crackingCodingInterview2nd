@@ -1,7 +1,26 @@
-from typing import Dict, List, Tuple
+from typing import Dict, List, Set, Tuple
 import unittest
+from libs.queue import StrQueue
 
+#幅探でやる
 def isHavingPathAtoB(graph:Dict[str, List[str]], A:str, B:str) -> bool:
+    visitedNodes:Set[str] = set()
+    q = StrQueue()
+
+    visitedNodes.add(A)
+    q.push(A)
+
+    while not(q.isEmpty()):
+        nowNode:str = q.pop()
+
+        if nowNode == B:
+            return True
+
+        for nxtNode in graph[nowNode]:
+            if not(nxtNode in visitedNodes):
+                visitedNodes.add(nxtNode)
+                q.push(nxtNode)
+
     return False
 
 class Test(unittest.TestCase):
