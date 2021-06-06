@@ -14,26 +14,26 @@ class TreeNode(object):
         """
         return self.__val
 
-    def setLeftNode(self, node:TreeNode) -> None:
+    def setLeftNode(self, node:'TreeNode') -> None:
         """
         左Nodeをセット
         """
         self.__left = node
 
-    def getLeftNode(self) -> TreeNode:
+    def getLeftNode(self) -> 'TreeNode':
         """
         左Nodeを取得
         """
         return self.__left
 
     
-    def setRightNode(self, node:TreeNode) -> None:
+    def setRightNode(self, node:'TreeNode') -> None:
         """
         右Nodeをセット
         """
         self.__right = node
 
-    def getRightNode(self) -> TreeNode:
+    def getRightNode(self) -> 'TreeNode':
         """
         右Node取得
         """
