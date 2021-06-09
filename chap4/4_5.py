@@ -14,11 +14,16 @@ class MinAndMaxValAndIsBST():
         self.isBST = isBST
 
 def searchMinAndMaxVal(root:TreeNode) -> MinAndMaxValAndIsBST:
-    if root is None:
-        return MinAndMaxValAndIsBST(-float("inf"), float("inf"), True)
-    
-    leftNodeRes = searchMinAndMaxVal(root.getLeftNode())
-    rightNodeRes = searchMinAndMaxVal(root.getRightNode())
+    if (root.getLeftNode() is None) and (root.getRightNode() is None):
+        return MinAndMaxValAndIsBST(root.getVal(), root.getVal(), True)
+
+    leftNodeRes = MinAndMaxValAndIsBST(0, -float("inf"), True)
+    if not(root.getLeftNode() is None):
+        leftNodeRes = searchMinAndMaxVal(root.getLeftNode())
+
+    rightNodeRes = MinAndMaxValAndIsBST(float("inf"), 0, True)
+    if not(root.getRightNode() is None):
+        rightNodeRes = searchMinAndMaxVal(root.getRightNode())
 
     if not(leftNodeRes.isBST) or not(rightNodeRes.isBST):
         return MinAndMaxValAndIsBST(0,0,False)
