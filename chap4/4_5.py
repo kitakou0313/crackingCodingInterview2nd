@@ -28,13 +28,13 @@ def searchMinAndMaxVal(root:TreeNode) -> MinAndMaxValAndIsBST:
     if not(leftNodeRes.isBST) or not(rightNodeRes.isBST):
         return MinAndMaxValAndIsBST(0,0,False)
 
-    if leftNodeRes.max < root.getVal():
+    if leftNodeRes.max < root.getVal() or rightNodeRes.min > root.getVal():
         return MinAndMaxValAndIsBST(0,0,False)
     
-    if rightNodeRes.min > root.getVal():
-        return MinAndMaxValAndIsBST(0,0,False)
+    updatedLeftRes = root.getVal() if (root.getLeftNode() is None) else leftNodeRes.min
+    updatedRightRes = root.getVal() if (root.getRightNode() is None) else rightNodeRes.max
 
-    return MinAndMaxValAndIsBST(leftNodeRes.min, rightNodeRes.max, True)
+    return MinAndMaxValAndIsBST(updatedLeftRes, updatedRightRes, True)
 
 def isBST(root:TreeNode) -> bool:
     rootNodeRes = searchMinAndMaxVal(root)
@@ -48,7 +48,46 @@ class Test(unittest.TestCase):
         """
         単体テスト
         """
+        bst = TreeNode(val=5)
+        bst.setLeftNode(
+            TreeNode(1)
+        )
+        bst.setRightNode(
+            TreeNode(10)
+        )
 
+        self.assertEqual(isBST(bst), True)
+
+        
+        notBst1 = TreeNode(val=5)
+        notBst1.setLeftNode(
+            TreeNode(6)
+        )
+        notBst1.setRightNode(
+            TreeNode(10)
+        )
+        self.assertEqual(isBST(notBst1), False)
+
+        notBst = TreeNode(val=5)
+        notBst.setLeftNode(
+            TreeNode(1)
+        )
+        notBst.setRightNode(
+            TreeNode(4)
+        )
+        self.assertEqual(isBST(notBst), False)
+
+        Bst = TreeNode(val=5)
+        Bst.setLeftNode(
+            TreeNode(1)
+        )
+        self.assertEqual(isBST(Bst), True)
+
+        notBst = TreeNode(val=5)
+        notBst.setLeftNode(
+            TreeNode(10)
+        )
+        self.assertEqual(isBST(notBst), False)
 
 if __name__ == "__main__":
     unittest.main()
