@@ -41,10 +41,7 @@ def isBST(root:TreeNode) -> bool:
     return rootNodeRes.isBST
 
 class Test(unittest.TestCase):
-    """
-    docstring
-    """
-    def Test1(self):
+    def test1(self):
         """
         単体テスト
         """
