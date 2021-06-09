@@ -28,7 +28,7 @@ def searchMinAndMaxVal(root:TreeNode) -> MinAndMaxValAndIsBST:
     if not(leftNodeRes.isBST) or not(rightNodeRes.isBST):
         return MinAndMaxValAndIsBST(0,0,False)
 
-    if leftNodeRes.max < root.getVal() or rightNodeRes.min > root.getVal():
+    if leftNodeRes.max > root.getVal() or rightNodeRes.min < root.getVal():
         return MinAndMaxValAndIsBST(0,0,False)
     
     updatedLeftRes = root.getVal() if (root.getLeftNode() is None) else leftNodeRes.min
