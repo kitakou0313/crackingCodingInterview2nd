@@ -1,19 +1,27 @@
-from typing import List, Dict
+from typing import List, Dict, Tuple
 import unittest
 
-def calExecutionOrder(graph:Dict[str, List[str]]) -> List[str]:
+def calExecutionOrder(projects:List[str], graph:Dict[str, List[str]]) -> List[str]:
     return 
 
 class Test(unittest.TestCase):
     def test1(self):
-        graph:Dict[str, List[str]] = {
-            "d":["a", "b"],
-            "b":["f"], 
-            "a":["f"],
-            "c":["d"]
-        }
-        expected:List[str] = ["f", "e", "a", "b", "d", "c"]
-        self.assertEqual(calExecutionOrder(graph=graph), expected)
+        projects:List[str] = ["a", "b", "c", "d", "e", "f", "g"]
+        dependencies:List[Tuple[str]] = [
+            ("d", "g"),
+            ("a", "e"),
+            ("b", "e"),
+            ("c", "a"),
+            ("f", "a"),
+            ("b", "a"),
+            ("f", "c"),
+            ("f", "b"),
+        ]
+
+        actual = calExecutionOrder(projects, dependencies)
+
+        for project, depended in dependencies:
+            assert actual.index(depended) < actual.index(project)
 
 if __name__ == "__main__":
     unittest.main()
