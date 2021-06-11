@@ -1,7 +1,7 @@
 from typing import List, Dict, Tuple
 import unittest
 
-def calExecutionOrder(projects:List[str], graph:Dict[str, List[str]]) -> List[str]:
+def calExecutionOrder(projects:List[str], graph:Dict[Tuple[str]]) -> List[str]:
     return 
 
 class Test(unittest.TestCase):
