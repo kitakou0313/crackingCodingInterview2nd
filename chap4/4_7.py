@@ -16,9 +16,20 @@ def constructGraph(projects:List[str],dependencies:List[Tuple[str]]) -> Dict[str
 
     return graph
 
+def countInMum(projects:List[str], dependencies:List[Tuple[str]]) -> Dict[str, int]:
+    inNumDict:Dict[str, int] = {}
+    for pro in projects:
+        inNumDict[pro] = 0
+
+    for From, to in dependencies:
+        inNumDict[to] += 1
+
+    return inNumDict
+
 # 依存先->依存元のグラフを作り、トポロジカルソートして返す
 def calExecutionOrder(projects:List[str], dependencies:List[Tuple[str]]) -> List[str]:
     graph = constructGraph(projects, dependencies)
+    inNumDict = countInMum(projects, dependencies)
 
     projectOrder:List[str] = []
     return projectOrder
