@@ -2,7 +2,7 @@ from typing import List, Dict, Set, Tuple
 import unittest
 import heapq
 
-def constructGrapth(projects:List[str],dependencies:List[Tuple[str]]) -> Dict[str, List[str]]:
+def constructGraph(projects:List[str],dependencies:List[Tuple[str]]) -> Dict[str, List[str]]:
     graph:Dict[str, List[str]] = {}
 
     for From, to in dependencies:
@@ -18,7 +18,7 @@ def constructGrapth(projects:List[str],dependencies:List[Tuple[str]]) -> Dict[st
 
 # 依存先->依存元のグラフを作り、トポロジカルソートして返す
 def calExecutionOrder(projects:List[str], dependencies:List[Tuple[str]]) -> List[str]:
-    graph = constructGrapth(projects, dependencies)
+    graph = constructGraph(projects, dependencies)
 
     projectOrder:List[str] = []
     return projectOrder
