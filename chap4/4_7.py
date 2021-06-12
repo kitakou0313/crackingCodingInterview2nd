@@ -2,28 +2,8 @@ from typing import List, Dict, Set, Tuple
 import unittest
 import heapq
 
-class nodeWithInNum(object):
-    """
-    入次数付有向グラフノード
-    """
-    def __init__(self) -> None:
-        super().__init__()
-        self.__inNum:int = 0
-        self.__nextNodes:List[nodeWithInNum] = []
+def constructGrapth(dependencies:List[Tuple[str]]) -> Dict[str, 'nodeWithInNum']:
 
-    def getInNum(self) -> int:
-        return self.__inNum
-    
-    def getNextNodes(self) -> List['nodeWithInNum']:
-        return self.__nextNodes
-
-    def addNextNode(self, node:'nodeWithInNum'):
-        """
-        次ノード追加
-        """
-        self.__nextNodes.append(node)
-
-def constructGrapth(dependencies:List[Tuple[str]]):
     return 
 
 # 依存先->依存元のグラフを作り、トポロジカルソートして返す
