@@ -26,10 +26,25 @@ def countInMum(projects:List[str], dependencies:List[Tuple[str]]) -> Dict[str, i
 
     return inNumDict
 
+class PriQueueEntry(object):
+    """
+    優先度付キュー用のエントリクラス
+    """
+    def __init__(self, data:str, inNum:int) -> None:
+        super().__init__()
+        self.data = data
+        self.inNum = inNum
+
+    def __lt__(self, other:'PriQueueEntry') -> bool:
+        return self.inNum < other.inNum
+
+
 # 依存先->依存元のグラフを作り、トポロジカルソートして返す
 def calExecutionOrder(projects:List[str], dependencies:List[Tuple[str]]) -> List[str]:
     graph = constructGraph(projects, dependencies)
     inNumDict = countInMum(projects, dependencies)
+
+    priQ:List[]
 
     projectOrder:List[str] = []
     return projectOrder
