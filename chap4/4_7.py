@@ -2,9 +2,16 @@ from typing import List, Dict, Set, Tuple
 import unittest
 import heapq
 
-def constructGrapth(dependencies:List[Tuple[str]]) -> Dict[str, 'nodeWithInNum']:
+def constructGrapth(projects:List[str],dependencies:List[Tuple[str]]) -> Dict[str, List[str]]:
+    graph:Dict[str, List[str]] = {}
+    
+    for pro in projects:
+        graph[pro] = []
+        for From, to in dependencies:
+            if From == pro:
+                graph[pro].append(to)
 
-    return 
+    return graph
 
 # 依存先->依存元のグラフを作り、トポロジカルソートして返す
 def calExecutionOrder(projects:List[str], dependencies:List[Tuple[str]]) -> List[str]:
