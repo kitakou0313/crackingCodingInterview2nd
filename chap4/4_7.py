@@ -4,17 +4,22 @@ import heapq
 
 def constructGrapth(projects:List[str],dependencies:List[Tuple[str]]) -> Dict[str, List[str]]:
     graph:Dict[str, List[str]] = {}
-    
+
+    for From, to in dependencies:
+        if From not in graph:
+            graph[From] = []
+        graph[From].append(to)
+
     for pro in projects:
-        graph[pro] = []
-        for From, to in dependencies:
-            if From == pro:
-                graph[pro].append(to)
+        if not(pro in graph):
+            graph[pro] = []
 
     return graph
 
 # 依存先->依存元のグラフを作り、トポロジカルソートして返す
 def calExecutionOrder(projects:List[str], dependencies:List[Tuple[str]]) -> List[str]:
+    graph = constructGrapth(projects, dependencies)
+
     projectOrder:List[str] = []
     return projectOrder
 
