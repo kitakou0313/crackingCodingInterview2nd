@@ -52,8 +52,9 @@ def calExecutionOrder(projects:List[str], dependencies:List[Tuple[str]]) -> List
 
         for nxtPro in graph[proToDoNow]:
             inNumDict[nxtPro] -= 1
-
-        findProsToDo(proToDo, inNumDict, didPros)
+            if inNumDict[nxtPro] == 0 and not(nxtPro in didPros):
+                proToDo.push(nxtPro)
+                didPros.add(nxtPro)
 
     return projectOrder
 
