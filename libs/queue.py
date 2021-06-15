@@ -1,5 +1,5 @@
 import unittest
-from typing import List
+from typing import List, Tuple
 
 
 class IntQueue():
@@ -19,6 +19,35 @@ class IntQueue():
         return self.__data.pop(0)
 
     def push(self, value:int) -> None:
+        """
+        追加
+        """
+        self.__data.append(value)
+
+    def isEmpty(self) -> bool:
+        """
+        空か判定
+        """
+        return len(self.__data) == 0
+
+
+class TupleQueue():
+    """
+    Tuple用Queue
+    """
+    def __init__(self):
+        """
+        コンストラクタ
+        """
+        self.__data:List[Tuple[int]] = []
+
+    def pop(self) -> Tuple[int]:
+        """
+        ポップ
+        """
+        return self.__data.pop(0)
+
+    def push(self, value:Tuple[int]) -> None:
         """
         追加
         """
