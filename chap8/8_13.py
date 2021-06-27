@@ -11,6 +11,7 @@ class Box(object):
         self.wi = wi
         self.di = di
 
+# ある箱を底とした時の最大の高さをメモ化して使う
 def calHighestBoxStack(boxes:List[Box]) -> int:
     pass
 
