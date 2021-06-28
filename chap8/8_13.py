@@ -1,4 +1,4 @@
-from typing import List
+from typing import Dict, List
 import unittest
 
 class Box(object):
@@ -11,9 +11,32 @@ class Box(object):
         self.wi = wi
         self.di = di
 
+def calHighestBoxStackHelper(bottomBox:Box, boxes:List[Box], memo:Dict[Box, int]) -> int:
+    """
+    ヘルパー用関数
+    """
+    if bottomBox in memo:
+        return memo[bottomBox]
+
+    res = bottomBox.hi
+
+    for nextBox in boxes:
+        if nextBox.wi < bottomBox.wi and nextBox.hi < bottomBox.hi and nextBox.di < bottomBox.di:
+            res = max(res, bottomBox.hi + calHighestBoxStackHelper(nextBox, boxes, memo))
+
+    memo[bottomBox] = res
+    return res
+
+
 # ある箱を底とした時の最大の高さをメモ化して使う
 def calHighestBoxStack(boxes:List[Box]) -> int:
-    pass
+    memo:Dict[Box, int] = {}
+
+    maxHighest = -1
+    for box in boxes:
+        maxHighest = max(maxHighest, calHighestBoxStackHelper(box, boxes, memo))
+
+    return maxHighest
 
 class Test(unittest.TestCase):
     def test1(self):
