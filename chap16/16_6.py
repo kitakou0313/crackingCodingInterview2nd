@@ -1,9 +1,15 @@
 from typing import List
 import unittest
 
-
+#O(len(A)*len(B))
 def searchMinDiff(listA:List[int], listB:List[int]) -> int:
-    pass
+    res = float("inf")
+
+    for numA in listA:
+        for numB in listB:
+            res = min(res, abs(numA - numB))
+
+    return res
 
 class Test(unittest.TestCase):
     def test1(self):
