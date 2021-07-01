@@ -1,13 +1,21 @@
 from typing import List
 import unittest
 
-#O(len(A)*len(B))
+#O(n*log(n))
 def searchMinDiff(listA:List[int], listB:List[int]) -> int:
-    res = float("inf")
+    sortedA = sorted(listA)
+    sortedB = sorted(listB)
 
-    for numA in listA:
-        for numB in listB:
-            res = min(res, abs(numA - numB))
+    indInA = 0
+    indInB = 0
+    res = abs(sortedA[indInA] - sortedB[indInB])
+
+    while indInA < len(sortedA) and indInB < len(sortedB):
+        res = min(res, abs(sortedA[indInA] - sortedB[indInB]))
+        if sortedA[indInA] < sortedB[indInB]:
+            indInA+=1
+        else:
+            indInB+=1
 
     return res
 
