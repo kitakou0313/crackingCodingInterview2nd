@@ -1,7 +1,7 @@
 from typing import List
 import unittest
 
-#2重ループで全区間探索O(n^2)
+#合計が負の値or0になった区間を削除していく O(n)
 def searchSumMaxInterval(array:List[int]) -> int:
     maxSum = - float("inf")
 
