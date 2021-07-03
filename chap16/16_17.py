@@ -5,12 +5,20 @@ import unittest
 def searchSumMaxInterval(array:List[int]) -> int:
     maxSum = - float("inf")
 
-    for intervalStartInd in range(0,len(array)):
-        sumInInterval = 0
-        for intervalEndInd in range(intervalStartInd, len(array)):
-            sumInInterval += array[intervalEndInd]
-            maxSum = max(maxSum, sumInInterval)
+    internalStartInd = 0
+    internalEndInd = 0
+    sumInInternal = 0
 
+    while (internalStartInd < len(array)) and (internalEndInd < len(array)):
+        sumInInternal += array[internalEndInd]
+        if sumInInternal <= 0:
+            internalStartInd = internalEndInd + 1
+            internalEndInd = internalStartInd
+            sumInInternal = 0
+        else:
+            maxSum = max(maxSum, sumInInternal)
+            internalEndInd += 1
+            
     return maxSum
 
 class Test(unittest.TestCase):
@@ -21,8 +29,6 @@ class Test(unittest.TestCase):
 
         for array, expected in testCases:
             self.assertEqual(searchSumMaxInterval(array), expected)
-
-        
 
 if __name__ == "__main__":
     unittest.main()
