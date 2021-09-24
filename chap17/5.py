@@ -1,5 +1,7 @@
 import unittest
 
+# 含まれる文字と数字の数が等しくなるような最長部分配列の探索
+
 class Test(unittest.TestCase):
     """
     docstring
