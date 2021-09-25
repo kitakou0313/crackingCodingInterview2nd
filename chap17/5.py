@@ -1,8 +1,28 @@
+from typing import List
 import unittest
 from unittest.case import TestCase
 
 # 含まれる文字と数字の数が等しくなるような最長部分配列の探索
 # 文字は2種類だけでよい
+
+def findLongestMatchSubarray(array:List[str]) -> int:
+    """
+    ブルートフォース
+    """
+    maxLen = 0
+    for subArrayLength in range(1,len(array)):
+        for startInd in range(0, len(array) - (subArrayLength - 1)):
+            Anum = 0
+            Bnum = 0
+            for indInSubArray in range(startInd, startInd + subArrayLength):
+                if array[indInSubArray] == "A":
+                    Anum += 1
+                else:
+                    Bnum += 1
+            if Anum == Bnum:
+                maxLen = max(maxLen, subArrayLength)
+    return maxLen
+
 
 class Test(unittest.TestCase):
     """
