@@ -5,6 +5,28 @@ from unittest.case import TestCase
 # 含まれる文字と数字の数が等しくなるような最長部分配列の探索
 # 文字は2種類だけでよい
 
+def findLongestSubArray(array:List[str]) -> int:
+    """
+    O(n)
+    """
+    def genDeletaArray(array:List[str]) -> List[int]:
+        """
+        そのインデックスまでのアルファベットと数字の数の差を返す
+        """
+        deltas:List[int] = []
+        delta = 0
+        for i in range(len(array)):
+            if array[i] == "A":
+                delta += 1
+            else:
+                delta -= 1
+            deltas.append(abs(delta))
+
+        return deltas
+
+    deltas = genDeletaArray(array)
+
+    pass
 def findLongestMatchSubarray(array:List[str]) -> int:
     """
     ブルートフォース O(n^3)
@@ -36,7 +58,7 @@ class Test(unittest.TestCase):
         ]
 
         for testInput, expected in testCase:
-            self.assertEqual(findLongestMatchSubarray(testInput), expected)
+            self.assertEqual(findLongestSubArray(testInput), expected)
         
 
 if __name__ == "__main__":
