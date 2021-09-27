@@ -7,7 +7,7 @@ from unittest.case import TestCase
 
 def findLongestMatchSubarray(array:List[str]) -> int:
     """
-    ブルートフォース
+    ブルートフォース O(n^3)
     """
     maxLen = 0
     for subArrayLength in range(1,len(array)):
