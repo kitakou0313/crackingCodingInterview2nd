@@ -1,4 +1,4 @@
-from typing import List
+from typing import Dict, List
 import unittest
 from unittest.case import TestCase
 
@@ -13,7 +13,7 @@ def findLongestSubArray(array:List[str]) -> int:
         """
         そのインデックスまでのアルファベットと数字の数の差を返す
         """
-        deltas:List[int] = []
+        deltas:List[int] = [0]
         delta = 0
         for i in range(len(array)):
             if array[i] == "A":
@@ -26,7 +26,26 @@ def findLongestSubArray(array:List[str]) -> int:
 
     deltas = genDeletaArray(array)
 
-    pass
+    # deltaごとに最も長い部分配列の長さを探索する
+    deltaAndIndMap:Dict[int, List[int]] = {}
+
+    for ind in range(0, len(deltas)):
+        if deltas[ind] not in deltaAndIndMap:
+            deltaAndIndMap[deltas[ind]] = []
+        deltaAndIndMap[deltas[ind]].append(ind)
+        
+    
+    maxLen = -float("inf")
+
+    for delta in deltaAndIndMap:
+        if len(deltaAndIndMap[delta]) == 1:
+            continue
+        for ind in range(1, len(deltaAndIndMap[delta])):
+            maxLen = max(maxLen, deltaAndIndMap[delta][ind] - deltaAndIndMap[delta][0])
+            
+    return maxLen
+
+
 def findLongestMatchSubarray(array:List[str]) -> int:
     """
     ブルートフォース O(n^3)
