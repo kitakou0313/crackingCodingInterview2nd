@@ -4,7 +4,10 @@ from unittest.case import TestCase
 
 def solver(nameAndFreq:List[tuple], synonyms:List[tuple]) -> Dict[str, int]:
     """
-    docstring
+    シノニムの関係のグラフ構築
+    各名前について
+    １．シノニムをすべて上のグラフから取得
+    ２．各シノニムについてすでにシノニムが存在していれば可算、辞書に追加
     """
     def createSynonymGraph(synonyms:List[tuple]) -> Dict[str, Set[str]]:
         """
@@ -20,17 +23,11 @@ def solver(nameAndFreq:List[tuple], synonyms:List[tuple]) -> Dict[str, int]:
                 synonymGraph[name1] = set()
             if name2 not in synonymGraph:
                 synonymGraph[name2] = set()
-
+            
             synonymGraph[name1].add(name2)
             synonymGraph[name2].add(name1)
 
         return synonymGraph
-
-    def isHavingSynonym(synonymGraph:Dict[str, Set[str]], name1:str, name2:str) -> bool:
-        """
-        name1とname2がシノニムか検証
-        """
-        pass
 
     synonymGraph = createSynonymGraph(synonyms)
 
