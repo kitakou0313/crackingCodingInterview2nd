@@ -5,6 +5,7 @@ import unittest
 def calMaxTowerHeight(peopleList:List[Tuple[int]]) -> int:
     """
     全順序、全選び方について探索 O(2^n * nCn)
+    memo化で高速化出来そう 各人が底の時の最大の高さをmemoにする
     """
     pass
 
