@@ -4,7 +4,7 @@ import unittest
 
 def calMaxTowerHeight(peopleList:List[Tuple[int]]) -> int:
     """
-    docstring
+    全順序、全選び方について探索 O(2^n * nCn)
     """
     pass
 
