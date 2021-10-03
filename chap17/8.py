@@ -17,8 +17,7 @@ def calMaxTowerHeight(peopleList:List[Tuple[int]]) -> int:
     memo:Dict[Tuple[int], int] = {}
 
     for i in range(0, len(maxHeight)):
-        lastPeoples = maxHeight[:i] + maxHeight[i+1:]
-        maxHeight = max(maxHeight, calMaxHeightWithBottom(lastPeoples, peopleList[i], memo))
+        maxHeight = max(maxHeight, calMaxHeightWithBottom(peopleList, peopleList[i], memo))
 
     return maxHeight
 
