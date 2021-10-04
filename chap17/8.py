@@ -16,7 +16,7 @@ def calMaxTowerHeight(peopleList:List[Tuple[int]]) -> int:
     maxHeight = -float("inf")
     memo:Dict[Tuple[int], int] = {}
 
-    for i in range(0, len(maxHeight)):
+    for i in range(0, len(peopleList)):
         maxHeight = max(maxHeight, calMaxHeightWithBottom(peopleList, peopleList[i], memo))
 
     return maxHeight
