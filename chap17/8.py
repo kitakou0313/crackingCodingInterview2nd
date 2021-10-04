@@ -4,9 +4,18 @@ import unittest
 
 def calMaxHeightWithBottom(peopleList:List[Tuple[int]], bottom:Tuple[int] ,memo:Dict[Tuple[int], int]) -> int:
     """
-    docstring
+    bottomの時の最大の高さを返す 導出済みならmemoから返す
     """
-    return 0
+    if bottom in memo:
+        return memo[bottom]
+
+    maxHeight = 1#最小値でも自分で1
+    for nxtPeople in peopleList:
+        if isStandOnA(nxtPeople, bottom):
+            maxHeight = max(maxHeight, 1 + calMaxHeightWithBottom(peopleList, nxtPeople, memo))
+
+    memo[bottom] = maxHeight
+    return maxHeight
 
 def calMaxTowerHeight(peopleList:List[Tuple[int]]) -> int:
     """
