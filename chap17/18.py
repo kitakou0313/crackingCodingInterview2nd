@@ -4,9 +4,27 @@ import unittest
 def findShortestSubArrayIncludingElements(elements:Set[int], array:List[int]) -> Tuple[int]:
     """
     arrayの中からelements内の要素すべてを持つ最短の部分配列を探索、インデックスを返す
+    brute force...O(n^2) 各インデックスに対して先頭から末尾まで探索、elementsをすべて含めば記録
     """
-    pass
 
+    shortestSubArrayStartInd = -1
+    shortestSubArrayEndInd = len(array)
+    # len(array) + 1の長さはありえないため
+
+    for startInd in range(len(array)):
+        elementsMustIncluded = set(elements)
+
+        for endInd in range(startInd, len(array)):
+            if array[endInd] in elementsMustIncluded:
+                elementsMustIncluded.remove(array[endInd])
+
+            if len(elementsMustIncluded) == 0:
+                if (endInd - startInd + 1) < (shortestSubArrayEndInd - shortestSubArrayStartInd + 1):
+                    shortestSubArrayStartInd = startInd
+                    shortestSubArrayEndInd = endInd
+                break
+
+    return (shortestSubArrayStartInd, shortestSubArrayEndInd)
 class Test(unittest.TestCase):
     """
     docstring
