@@ -5,6 +5,10 @@ def findShortestSubArrayIncludingElements(elements:Set[int], array:List[int]) ->
     """
     arrayの中からelements内の要素すべてを持つ最短の部分配列を探索、インデックスを返す
     brute force...O(n^2) 各インデックスに対して先頭から末尾まで探索、elementsをすべて含めば記録
+
+    改善策…尺取り法使えそう
+    全部含むまで進める、含んだら頭進める
+    O(n)?
     """
 
     shortestSubArrayStartInd = -1
