@@ -10,24 +10,42 @@ def findShortestSubArrayIncludingElements(elements:Set[int], array:List[int]) ->
     全部含むまで進める、含んだら頭進める
     O(n)?
     """
+    # len(array) + 1の長さはありえないため
+
+    # for startInd in range(len(array)):
+    #     elementsMustIncluded = set(elements)
+
+    #     for endInd in range(startInd, len(array)):
+    #         if array[endInd] in elementsMustIncluded:
+    #             elementsMustIncluded.remove(array[endInd])
+
+    #         if len(elementsMustIncluded) == 0:
+    #             if (endInd - startInd + 1) < (shortestSubArrayEndInd - shortestSubArrayStartInd + 1):
+    #                 shortestSubArrayStartInd = startInd
+    #                 shortestSubArrayEndInd = endInd
+    #             break
 
     shortestSubArrayStartInd = -1
     shortestSubArrayEndInd = len(array)
-    # len(array) + 1の長さはありえないため
 
-    for startInd in range(len(array)):
-        elementsMustIncluded = set(elements)
+    right = 0
+    elementsIncludedInSubArray:Set[int] = set()
 
-        for endInd in range(startInd, len(array)):
-            if array[endInd] in elementsMustIncluded:
-                elementsMustIncluded.remove(array[endInd])
+    for left in range(len(array)):
+        while (right < len(array) and not(elementsIncludedInSubArray.issuperset(elements))):
+            elementsIncludedInSubArray.add(array[right])
+            right += 1
+        
+        if elementsIncludedInSubArray.issuperset(elements):
+            if (shortestSubArrayEndInd - shortestSubArrayStartInd + 1) > right - left:
+                shortestSubArrayStartInd = left
+                shortestSubArrayEndInd = right - 1
 
-            if len(elementsMustIncluded) == 0:
-                if (endInd - startInd + 1) < (shortestSubArrayEndInd - shortestSubArrayStartInd + 1):
-                    shortestSubArrayStartInd = startInd
-                    shortestSubArrayEndInd = endInd
-                break
-
+        if right == left:
+            right += 1
+        else:
+            elementsIncludedInSubArray.discard(array[left])
+        
     return (shortestSubArrayStartInd, shortestSubArrayEndInd)
 class Test(unittest.TestCase):
     """
