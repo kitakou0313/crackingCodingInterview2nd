@@ -31,7 +31,8 @@ class Test(unittest.TestCase):
         ]
 
         for trgInput, expected in testCases:
-            pass
+            self.assertEqual(conuntNumberOfWayToPayN(
+                trgInput, coins), expected)
 
 
 if __name__ == "__main__":
