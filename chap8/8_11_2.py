@@ -1,4 +1,4 @@
-from typing import List
+from typing import Dict, List, Set
 import unittest
 
 
@@ -6,7 +6,29 @@ def conuntNumberOfWayToPayN(payment: int, coins: List[int]) -> int:
     """
     paymentをコインで支払う場合の支払い方の数を計算
     """
-    pass
+    def helper(payment: int, coins: List[int], memo: Dict[int, Set[Set[int]]]) -> Set[Set[int]]:
+        """
+        hepler用関数、memoに追加済みならキャッシュを返す
+        memoは金額に対する支払い方法の数を返す
+        """
+        res = 0
+        for coin in coins:
+            trgPayment = payment - coin
+
+            if trgPayment < 0:
+                continue
+
+            if trgPayment in memo:
+                res += memo[trgPayment]
+            else:
+                res += helper(trgPayment, coins, memo)
+
+        memo[payment] = res
+        return res
+
+    memo = {}
+    memo[0] = 1
+    return len(helper(payment, coins, memo))
 
 
 class Test(unittest.TestCase):
@@ -36,4 +58,4 @@ class Test(unittest.TestCase):
 
 
 if __name__ == "__main__":
-    pass
+    unittest.main()
