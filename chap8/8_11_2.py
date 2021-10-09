@@ -1,4 +1,4 @@
-from typing import Dict, List, Set
+from typing import Dict, List, Set, Tuple
 import unittest
 
 
@@ -6,7 +6,7 @@ def conuntNumberOfWayToPayN(payment: int, coins: List[int]) -> int:
     """
     paymentをコインで支払う場合の支払い方の数を計算
     """
-    def helper(payment: int, coins: List[int], memo: Dict[int, Set[Set[int]]]) -> Set[Set[int]]:
+    def helper(payment: int, coins: List[int], memo: Dict[int, Set[Tuple[int]]]) -> Set[Tuple[int]]:
         """
         hepler用関数、memoに追加済みならキャッシュを返す
         memoは金額に対する支払い方法の数を返す
