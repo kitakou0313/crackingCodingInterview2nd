@@ -11,23 +11,29 @@ def conuntNumberOfWayToPayN(payment: int, coins: List[int]) -> int:
         hepler用関数、memoに追加済みならキャッシュを返す
         memoは金額に対する支払い方法の数を返す
         """
-        res = 0
-        for coin in coins:
-            trgPayment = payment - coin
+        res: Set[Tuple[int]] = set()
+
+        for coinInd in range(len(coins)):
+            trgPayment = payment - coins[coinInd]
 
             if trgPayment < 0:
                 continue
 
-            if trgPayment in memo:
-                res += memo[trgPayment]
-            else:
-                res += helper(trgPayment, coins, memo)
+            trgAnsPaymentList = memo[trgPayment] if trgPayment in memo else helper(
+                trgPayment, coins, memo)
+
+            for paymentWay in trgAnsPaymentList:
+                addedPayment = list(paymentWay)
+                addedPayment[coinInd] += 1
+                res.add(tuple(addedPayment))
 
         memo[payment] = res
         return res
 
     memo = {}
-    memo[0] = 1
+    fundList = tuple([0 for _ in range(len(coins))])
+    memo[0] = set()
+    memo[0].add(fundList)
     return len(helper(payment, coins, memo))
 
 
